@@ -25,17 +25,23 @@ class Page {
         // check video
         await player.check()
 
-        // TODO: check camera
+        // check camera
+        await fetcher.ready()
+        // TODO: check camera logic
     }
 
     async run() {
-        // TODO: check video
+        // check video
+        await player.check()
 
-        // TODO: check camera
+        // check camera
+        await fetcher.ready()
 
-        // TODO: record camera
+        // record camera
+        await fetcher.record()
 
-        // TODO: play video
+        // play video
+        await player.play()
     }
 
     async stop() {}

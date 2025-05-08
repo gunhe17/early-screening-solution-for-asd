@@ -14,6 +14,12 @@ class Fetcher {
         )
     }
 
+    async check() {
+        return await fetchHelper.post(
+            `/backend-api/camera/check`
+        )
+    }
+
     async getVideo(video_id) {
         return await fetchHelper.get_file(
             `/backend-api/video?video_id=${video_id}`,

@@ -1,33 +1,25 @@
 from fastapi.responses import JSONResponse
 
 from imomtae.usecase.ready_camera import ready
-from imomtae.usecase.record_camera import record_multi
+from imomtae.usecase.record_camera import record
 
 
 """Command"""
 
 async def post_ready():
-    status = {}
 
-    for i in [1]:
-        is_ready = ready(i)
-        status[f"cam{i + 1}"] = (
-            "ready" if is_ready else "not ready"
-        )
+    is_ready = ready()
 
     return JSONResponse(content={
-        "data": status
+        "data": is_ready
     })
 
 async def post_record(
     video_id: int,
     user_id: int,
 ):
-    is_record = record_multi(video_id, user_id)
+    is_record = record(video_id, user_id)
 
     return JSONResponse(content={
-        "data": {
-            "message": "record",
-            "is_record": is_record
-        }
+        "data": is_record
     })

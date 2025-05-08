@@ -5,3 +5,4 @@ starlette
 jinja2
 itsdangerous
 pytest
+python-dotenv

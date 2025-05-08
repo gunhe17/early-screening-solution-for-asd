@@ -36,8 +36,11 @@ class Player{
 
     // unique
 
-    play() {
-        overlay.hide_immediately()
+    async play() {
+        overlay.hide()
+
+        await fetcher.record()
+        await fetcher.check()
 
         this.player.play()
     }
@@ -139,9 +142,9 @@ document.addEventListener("keydown", async(event) => {
         event.preventDefault();
 
         if (player.player.paused) {
-            player.play();
+            await player.play();
         } else {
-            player.pause();
+            await player.pause();
         }
     }
 });

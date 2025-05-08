@@ -1,21 +1,27 @@
 import cv2
+from imomtae.config import CameraConfig
 
-def ready(device_index=0) -> bool:
-    print("\n")
 
-    # is opened
-    cap = cv2.VideoCapture(device_index)
-    print("::CAP", cap)
+def ready() -> dict:
+    results = {}
 
-    if not cap.isOpened():
+    for i, device_index in enumerate(CameraConfig.INDEX_LIST):
+        cam_key = f"cam{i + 1}"
+
+        # step 1: 장치 열기
+        cap = cv2.VideoCapture(device_index)
+        if not cap.isOpened():
+            results[cam_key] = "not opened"
+            cap.release()
+            continue
+
+        # step 2: 프레임 확인
+        ret, frame = cap.read()
         cap.release()
-        return False
-    print("::CAP.isOpened()", cap.isOpened())
 
-    # is ready
-    ret, frame = cap.read()
-    cap.release()
-    print("::ret", ret)
-    print("::frame", frame)
+        if not ret or frame is None or frame.size == 0:
+            results[cam_key] = "no frame"
+        else:
+            results[cam_key] = "ok"
 
-    return ret and frame is not None
+    return results
