@@ -1,4 +1,3 @@
-import logging
 from fastapi import FastAPI
 from typing import Any, Callable, List, Type
 

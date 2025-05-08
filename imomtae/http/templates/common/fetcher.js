@@ -8,9 +8,13 @@ class Fetcher {
         )
     }
 
-    async record() {
+    async record(video_id, user_id) {
         return await fetchHelper.post(
-            `/backend-api/camera/record`
+            `/backend-api/camera/record`,
+            {
+                video_id: video_id,
+                user_id: user_id
+            }
         )
     }
 

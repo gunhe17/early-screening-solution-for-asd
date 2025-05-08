@@ -27,26 +27,22 @@ class Page {
 
         // check camera
         await fetcher.ready()
-        // TODO: check camera logic
+            // TODO: check camera logic
     }
 
     async run() {
-        // check video
-        await player.check()
-
-        // check camera
-        await fetcher.ready()
-
         // record camera
-        await fetcher.record()
+        const video_id = paramManager.get("video_id");
+        const user_id = paramManager.get("user_id");
+        await fetcher.record(video_id, user_id)
 
         // play video
         await player.play()
     }
 
-    async stop() {}
-
-    async restart() {}
+    async stop() {
+        await player.pause()
+    }
 }
 
 /**
@@ -67,4 +63,18 @@ if (!window.page) {
 
 document.addEventListener('DOMContentLoaded', async() => {
     await page.init();
+});
+
+document.addEventListener("keydown", async(event) => {
+    if (!player.is_checked) return;
+
+    if (event.code === "Space") {
+        event.preventDefault();
+
+        if (player.player.paused) {
+            await page.run();
+        } else {
+            await page.stop();
+        }
+    }
 });

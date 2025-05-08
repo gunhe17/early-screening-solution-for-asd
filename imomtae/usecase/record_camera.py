@@ -2,8 +2,14 @@ import os
 import time
 import cv2
 
+from imomtae.config import CameraConfig
 
-def record(video_id: int, user_id: str, device_indices: list[int] = [0, 1, 2, 3, 4, 5]) -> bool:
+
+def record(
+    video_id: int, 
+    user_id: str
+) -> bool:
+
     video_path = f"test/data/step{video_id}.mp4"
     duration = _duration(video_path)
     if duration <= 0:
@@ -15,7 +21,8 @@ def record(video_id: int, user_id: str, device_indices: list[int] = [0, 1, 2, 3,
     # 각 장치에 대한 VideoCapture 및 VideoWriter 설정
     caps = []
     outs = []
-    for i, device_index in enumerate(device_indices):
+    camera_config = CameraConfig()
+    for i, device_index in enumerate(camera_config.INDEX_LIST):
         cap = cv2.VideoCapture(device_index)
         if not cap.isOpened():
             print(f"❌ 카메라 {device_index} 열기 실패")
@@ -65,7 +72,7 @@ def _duration(video_path: str) -> int:
 
     fps = video.get(cv2.CAP_PROP_FPS)
     frame_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
-    duration = int(frame_count / fps) if fps else 0
+    duration = int(frame_count / fps) + 3 if fps else 0
 
     video.release()
     return duration

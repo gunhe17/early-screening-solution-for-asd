@@ -39,9 +39,6 @@ class Player{
     async play() {
         overlay.hide()
 
-        await fetcher.record()
-        await fetcher.check()
-
         this.player.play()
     }
 
@@ -127,24 +124,11 @@ class Player{
  */
 export const player = new Player();
 
+
 /**
  * @event
  */
 
 document.addEventListener('DOMContentLoaded', async() => {
     player.init()
-});
-
-document.addEventListener("keydown", async(event) => {
-    if (!player.is_checked) return;
-
-    if (event.code === "Space") {
-        event.preventDefault();
-
-        if (player.player.paused) {
-            await player.play();
-        } else {
-            await player.pause();
-        }
-    }
 });

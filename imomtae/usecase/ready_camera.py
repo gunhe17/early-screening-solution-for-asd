@@ -5,7 +5,9 @@ from imomtae.config import CameraConfig
 def ready() -> dict:
     results = {}
 
-    for i, device_index in enumerate(CameraConfig.INDEX_LIST):
+    camera_config = CameraConfig()
+
+    for i, device_index in enumerate(camera_config.INDEX_LIST):
         cam_key = f"cam{i + 1}"
 
         # step 1: 장치 열기

@@ -35,9 +35,12 @@ class CameraConfig():
 
     @property
     def INDEX_LIST(self):
-        indices = []
-        for i in range(1, self.CAM_COUNT + 1):
-            index = getattr(self, f"CAM_NO{i}_INDEX", None)
-            if index is not None:
-                indices.append(index)
-        return indices
+        indices = [
+            self.CAM_NO1_INDEX,
+            self.CAM_NO2_INDEX,
+            self.CAM_NO3_INDEX,
+            self.CAM_NO4_INDEX,
+            self.CAM_NO5_INDEX,
+            self.CAM_NO6_INDEX,
+        ]
+        return [int(i) for i in indices if i not in (None, '')]
