@@ -1,0 +1,18 @@
+<!-- import -->
+{% from "capture/component/player/component/overlay/component.html" import overlay %}
+
+<!-- content -->
+{% macro player() %}
+
+<div id="player" class="flex w-full h-full">
+    <video 
+        name="video-player"
+        class="w-full h-full"
+    ></video>
+
+    {{ overlay() }}
+
+
+</div>
+
+{% endmacro %}

@@ -1,0 +1,7 @@
+opencv-python
+fastapi
+uvicorn
+starlette
+jinja2
+itsdangerous
+pytest

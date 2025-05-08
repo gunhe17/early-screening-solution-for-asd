@@ -1,0 +1,44 @@
+<!-- extend -->
+{% extends "common/base.html" %}
+
+<!-- import -->
+
+<!-- content -->
+{% block body %}
+
+<script src="/templates/home/page.js" type="module"></script>
+
+<main class="w-full h-full flex flex-col items-center justify-center">
+
+    <!-- Title -->
+    <div class="mt-5 max-w-2xl text-center mx-auto">
+        <h1 class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl">
+            Let's Build
+            <span class="text-transparent bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600">Together</span>
+        </h1>
+    </div>
+
+    <!-- Description -->
+    <div class="mt-5 max-w-3xl text-center mx-auto">
+        <p class="text-lg text-gray-600">
+            Preline UI is an open-source set of prebuilt UI components, ready-to-use examples and Figma design system based on the utility-first Tailwind CSS framework.
+        </p>
+    </div>
+  
+
+    <!-- Buttons -->
+    <div class="mt-8 gap-3 flex justify-center">
+        <a 
+            class="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none py-3 px-4 cursor-pointer"
+            onclick="page.onClick()"
+        >
+            Get started
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+            </svg>
+        </a>
+    </div>
+
+</main>
+
+{% endblock %}

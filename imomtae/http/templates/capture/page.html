@@ -1,0 +1,18 @@
+<!-- extend -->
+{% extends "common/base.html" %}
+
+<!-- import -->
+{% from "capture/component/player/component.html" import player %}
+
+<!-- content -->
+{% block body %}
+
+<script src="/templates/capture/page.js" type="module"></script>
+
+<main class="flex w-full h-full">
+
+    {{ player() }}
+    
+</main>
+
+{% endblock %}
