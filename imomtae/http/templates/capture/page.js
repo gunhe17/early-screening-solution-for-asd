@@ -3,6 +3,7 @@ import { paramManager } from "/templates/common/param_manager.js"
 
 import { player } from "/templates/capture/component/player/component.js"
 
+
 /**
  * @Page
  */
@@ -34,14 +35,17 @@ class Page {
         // record camera
         const video_id = paramManager.get("video_id");
         const user_id = paramManager.get("user_id");
-        await fetcher.record(video_id, user_id)
+        fetcher.record(video_id, user_id)
+
+        // wait 3s
+        await new Promise(resolve => setTimeout(resolve, 3000));
 
         // play video
-        await player.play()
+        player.play()
     }
 
     async stop() {
-        await player.pause()
+        player.pause()
     }
 }
 

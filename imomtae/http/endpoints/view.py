@@ -20,3 +20,8 @@ async def capture_page(request: Request, user_id: str, video_id: int):
     return templates.TemplateResponse("capture/page.html", {
         "request": request,
     })
+
+async def monitor_page(request: Request, user_id: str):
+    return templates.TemplateResponse("monitor/page.html", {
+        "request": request,
+    })

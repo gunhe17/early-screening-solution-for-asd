@@ -36,7 +36,7 @@ class Player{
 
     // unique
 
-    async play() {
+    play() {
         overlay.hide()
 
         this.player.play()

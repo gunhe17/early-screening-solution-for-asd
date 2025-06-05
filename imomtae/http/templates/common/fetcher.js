@@ -2,14 +2,24 @@
  * @Fetcher
  */
 class Fetcher {
+    async user(name, birth) {
+        return await fetchHelper.post(
+            `/backend-api/user`,
+            {
+                name: name,
+                birth: birth
+            }
+        )
+    }
+
     async ready() {
         return await fetchHelper.post(
             `/backend-api/camera/ready`
         )
     }
 
-    async record(video_id, user_id) {
-        return await fetchHelper.post(
+    record(video_id, user_id) {
+        return fetchHelper.postAndForget(
             `/backend-api/camera/record`,
             {
                 video_id: video_id,
@@ -29,6 +39,18 @@ class Fetcher {
             `/backend-api/video?video_id=${video_id}`,
         )
     }
+
+    async getMonitorVideo(user_id, video_id) {
+        return await fetchHelper.get_file(
+            `/backend-api/monitor/video/u/${user_id}/v/${video_id}`,
+        )
+    }
+
+    async getMonitorTime(user_id, video_id) {
+        return await fetchHelper.get(
+            `/backend-api/monitor/time/u/${user_id}/v/${video_id}`,
+        )
+    }
 }
 
 /**
@@ -41,6 +63,14 @@ export const fetcher = new Fetcher();
  * @FetchHelper
  */
 class FetchHelper {
+    postAndForget(url, body) {
+        fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        });
+    }
+
     async post(url, body) {
         const response = await fetch(url, {
             method: "POST",

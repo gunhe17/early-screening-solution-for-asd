@@ -4,6 +4,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+class DBConfig():
+    @property
+    def DB_PATH(self):
+        return os.getenv("DB_PATH", "imomtae/db/db.json")
+    
+
 class CameraConfig():
     @property
     def CAM_COUNT(self):
@@ -35,6 +41,8 @@ class CameraConfig():
 
     @property
     def INDEX_LIST(self):
+        load_dotenv(override=True)
+
         indices = [
             self.CAM_NO1_INDEX,
             self.CAM_NO2_INDEX,
@@ -43,4 +51,4 @@ class CameraConfig():
             self.CAM_NO5_INDEX,
             self.CAM_NO6_INDEX,
         ]
-        return [int(i) for i in indices if i not in (None, '')]
+        return [int(i) for i in indices if i not in (None, '', '-1')]

@@ -1,44 +1,58 @@
 <!-- extend -->
 {% extends "common/base.html" %}
 
-<!-- import -->
-
 <!-- content -->
 {% block body %}
-
 <script src="/templates/home/page.js" type="module"></script>
 
-<main class="w-full h-full flex flex-col items-center justify-center">
-
+<main class="w-full h-full flex flex-col items-center justify-center px-6 py-12 lg:px-8">
+    
     <!-- Title -->
-    <div class="mt-5 max-w-2xl text-center mx-auto">
-        <h1 class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl">
+    <div class="sm:mx-auto sm:w-full sm:max-w-2xl text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
             Let's Build
             <span class="text-transparent bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600">Together</span>
         </h1>
     </div>
 
-    <!-- Description -->
-    <div class="mt-5 max-w-3xl text-center mx-auto">
-        <p class="text-lg text-gray-600">
-            Preline UI is an open-source set of prebuilt UI components, ready-to-use examples and Figma design system based on the utility-first Tailwind CSS framework.
-        </p>
-    </div>
-  
+    <!-- Inputs -->
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm space-y-6">
+        
+        <!-- Input: name -->
+        <div>
+            <label for="name" class="block text-sm/6 font-medium text-gray-300">Name</label>
+            <div class="flex max-w-md w-full">
+                <span class="inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-e-0 rounded-s-md border-gray-600">
+                    <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                    </svg>
+                </span>
+                <input type="text" id="name" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-400 focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-600 p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="이름을 입력해주세요.">
+            </div>
+        </div>
 
-    <!-- Buttons -->
-    <div class="mt-8 gap-3 flex justify-center">
-        <a 
-            class="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none py-3 px-4 cursor-pointer"
-            onclick="page.onClick()"
-        >
-            Get started
-            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m9 18 6-6-6-6"/>
-            </svg>
-        </a>
+        <!-- Input: birth -->
+        <div>
+            <label for="birth" class="block text-sm/6 font-medium text-gray-300">Birth</label>
+            <div class="flex max-w-md w-full">
+                <span class="inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-e-0 rounded-s-md border-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="size-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z" />
+                    </svg>
+                </span>
+                <input type="text" id="birth" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-400 focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-600 p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="6자리로 입력해주세요.">
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button 
+                type="button" 
+                onclick="page.onClick()"
+                class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >Sign in</button>
+        </div>
     </div>
 
 </main>
-
 {% endblock %}

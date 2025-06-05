@@ -1,0 +1,74 @@
+<!-- extend -->
+{% extends "common/base.html" %}
+
+<!-- import -->
+{% from "monitor/component/timer/component.html" import timer %}
+
+<!-- content -->
+{% block body %}
+
+<script src="/templates/monitor/page.js" type="module"></script>
+
+<header class="w-full h-20 bg-black text-white flex items-center justify-between px-6 text-xl font-semibold">
+    <div>실시간 모니터링 대시보드</div>
+    {{ timer() }}
+</header>
+
+<main class="w-screen h-[calc(100vh-5rem)] grid grid-cols-3 grid-rows-2 bg-black overflow-hidden">
+    <!-- 영상 1 -->
+    <div class="flex items-center justify-center relative w-full h-full aspect-video bg-black">
+        <div name="label1" class="absolute top-2 left-2 z-10 text-white text-xl bg-black bg-opacity-50 px-2 py-1 rounded">
+            some
+        </div>
+        <video name="video1" class="w-full h-full object-contain" controls>
+        </video>
+    </div>
+
+
+    <!-- 영상 2 -->
+    <div class="flex items-center justify-center relative w-full h-full aspect-video bg-black">
+        <div name="label2" class="absolute top-2 left-2 z-10 text-white text-xl bg-black bg-opacity-50 px-2 py-1 rounded">
+            some
+        </div>
+        <video name="video2" class="w-full h-full aspect-video object-contain bg-black" controls>
+        </video>
+    </div>
+
+    <!-- 영상 3 -->
+    <div class="flex items-center justify-center relative w-full h-full aspect-video bg-black">
+        <div name="label3" class="absolute top-2 left-2 z-10 text-white text-xl bg-black bg-opacity-50 px-2 py-1 rounded">
+            some
+        </div>
+        <video name="video3" class="w-full h-full aspect-video object-contain bg-black" controls>
+        </video>
+    </div>
+
+    <!-- 영상 4 -->
+    <div class="flex items-center justify-center relative w-full h-full aspect-video bg-black">
+        <div name="label4" class="absolute top-2 left-2 z-10 text-white text-xl bg-black bg-opacity-50 px-2 py-1 rounded">
+            some
+        </div>
+        <video name="video4" class="w-full h-full aspect-video object-contain bg-black" controls>
+        </video>
+    </div>
+
+    <!-- 영상 5 -->
+    <div class="flex items-center justify-center relative w-full h-full aspect-video bg-black">
+        <div name="label5" class="absolute top-2 left-2 z-10 text-white text-xl bg-black bg-opacity-50 px-2 py-1 rounded">
+            some
+        </div>
+        <video name="video5" class="w-full h-full aspect-video object-contain bg-black" controls>
+        </video>
+    </div>
+
+    <!-- 영상 6 -->
+    <div class="flex items-center justify-center relative w-full h-full aspect-video bg-black">
+        <div name="label6" class="absolute top-2 left-2 z-10 text-white text-xl bg-black bg-opacity-50 px-2 py-1 rounded">
+            some
+        </div>
+        <video name="video6" class="w-full h-full aspect-video object-contain bg-black" controls>
+        </video>
+    </div>
+</main>
+
+{% endblock %}
