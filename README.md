@@ -4,6 +4,6 @@ test data
 
 ### run
 
+cmd.exe /k "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 
-$env:PYTHONPATH = "."
-python imomtae\bin\server.py
+.\scripts\ops\server.ps1

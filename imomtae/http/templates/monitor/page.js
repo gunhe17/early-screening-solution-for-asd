@@ -46,7 +46,7 @@ class Page {
             const video_time = await fetcher.getMonitorTime(user_id, idx);
 
             timer.onTime(video_time.relative_time[0], () => {
-                console.log(`▶ video${idx + 1} 재생`);
+                console.log(`video${idx + 1} 재생`);
                 video.play();
             });
 

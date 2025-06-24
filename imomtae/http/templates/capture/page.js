@@ -2,6 +2,7 @@ import { fetcher } from "/templates/common/fetcher.js"
 import { paramManager } from "/templates/common/param_manager.js"
 
 import { player } from "/templates/capture/component/player/component.js"
+import { loading } from "/templates/capture/component/loading/component.js"
 
 
 /**
@@ -15,30 +16,22 @@ class Page {
 
     // common
     
-    async init() {
-        // get video
-        const video_id = paramManager.get("video_id");
-        const getted_video = await fetcher.getVideo(video_id);
-
-        // set video
-        await player.set(getted_video)
-
-        // check video
-        await player.check()
-
-        // check camera
-        await fetcher.ready()
-            // TODO: check camera logic
-    }
+    async init() {}
 
     async run() {
+        // loading
+        loading.show();
+
         // record camera
         const video_id = paramManager.get("video_id");
         const user_id = paramManager.get("user_id");
         fetcher.record(video_id, user_id)
 
-        // wait 3s
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        // wait 5s
+        await new Promise(resolve => setTimeout(resolve, 5000));
+
+        // loading
+        loading.hide();
 
         // play video
         player.play()
@@ -75,7 +68,7 @@ document.addEventListener("keydown", async(event) => {
     if (event.code === "Space") {
         event.preventDefault();
 
-        if (player.player.paused) {
+        if (player.current_player.paused) {
             await page.run();
         } else {
             await page.stop();

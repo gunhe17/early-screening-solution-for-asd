@@ -8,7 +8,9 @@ class Overlay {
         this.description = this.overlay.querySelector(`[name=quote-description]`);
     }
 
+
     // common
+
     init() {
         this.title.textContent = "수집을 위한 준비 중입니다.";
         this.description.textContent = "이 메시지가 사라지면 수집을 시작할 수 있습니다.";
@@ -19,6 +21,12 @@ class Overlay {
         this.title.textContent = "수집을 중단하셨습니다.";
         this.description.textContent = "정확한 수집을 위해 처음부터 다시 수집을 진행합니다.";
         this._fade_in();
+    }
+
+    cleanup() {
+        this.title.textContent = "촬영이 완료되었습니다.";
+        this.description.textContent = "촬영된 데이터를 저장하는 중 입니다.";
+        this._fade_in();        
     }
 
     end() {
@@ -35,7 +43,9 @@ class Overlay {
         this._immediately_out();
     }
 
+    
     // helper
+
     _fade_in() {
         this.overlay.classList.remove("hidden");
         this.overlay.classList.add("visible");

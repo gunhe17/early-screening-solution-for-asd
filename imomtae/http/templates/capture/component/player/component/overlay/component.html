@@ -1,24 +1,24 @@
 <!-- content -->
 {% macro overlay() %}
 
-    <div 
-        id="overlay"
-        class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-10"
-    >
-        <div name="content" class="absolute top-0 left-0 m-4 p-4 flex items-center space-x-3">
-            <div name="quote-attribute" class="w-2 h-16 rounded-full bg-blue-500"></div>
-            <div name="quote-content">
-                <h2 name="quote-title" class="text-lg font-bold text-white"></h2>
-                <p name="quote-description" class="text-sm text-white"></p>
-            </div>
+<div 
+    id="overlay"
+    class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-90"
+>
+    <div name="content" class="absolute top-0 left-0 m-4 p-4 flex items-center space-x-3">
+        <div name="quote-attribute" class="w-2 h-16 rounded-full bg-blue-500"></div>
+        <div name="quote-content">
+            <h2 name="quote-title" class="text-lg font-bold text-white"></h2>
+            <p name="quote-description" class="text-sm text-white"></p>
         </div>
     </div>
+</div>
 
 
 <style>
 #overlay {
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 1s ease;
     pointer-events: none;
 }
 

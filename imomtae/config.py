@@ -4,10 +4,33 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+class SystemConfig():
+    @property
+    def OS(self):
+        import platform
+        return platform.system()
+    
+    @property
+    def EXE_CHECK(self):
+        return os.getenv("EXE_CHECK", "imomtae/bin/check.exe")
+    
+    @property
+    def EXE_CAPTURE(self):
+        return os.getenv("EXE_CAPTURE", "imomtae/bin/capture.exe")
+    
+
 class DBConfig():
     @property
     def DB_PATH(self):
         return os.getenv("DB_PATH", "imomtae/db/db.json")
+    
+    @property
+    def SOLUTION_PATH(self):
+        return os.getenv("SOLUTION_PATH", "data/solution_videos")
+    
+    @property
+    def COLLECTION_PATH(self):
+        return os.getenv("COLLECTION_PATH",  "data/collection_videos")
     
 
 class CameraConfig():
@@ -51,4 +74,6 @@ class CameraConfig():
             self.CAM_NO5_INDEX,
             self.CAM_NO6_INDEX,
         ]
-        return [int(i) for i in indices if i not in (None, '', '-1')]
+        return ",".join(
+            str(int(i)) for i in indices if i not in (None, '', '-1')
+        )
