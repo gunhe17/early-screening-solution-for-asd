@@ -3,6 +3,7 @@
 
 <!-- import -->
 {% from "capture/component/player/component.html" import player %}
+{% from "capture/component/loading/component.html" import loading %}
 
 <!-- content -->
 {% block body %}
@@ -12,7 +13,8 @@
 <main class="flex w-full h-full">
 
     {{ player() }}
-    
+    {{ loading() }}
+
 </main>
 
 {% endblock %}

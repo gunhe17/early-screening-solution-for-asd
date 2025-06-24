@@ -28,27 +28,9 @@ class Fetcher {
         )
     }
 
-    async check() {
-        return await fetchHelper.post(
-            `/backend-api/camera/check`
-        )
-    }
-
-    async getVideo(video_id) {
-        return await fetchHelper.get_file(
-            `/backend-api/video?video_id=${video_id}`,
-        )
-    }
-
-    async getMonitorVideo(user_id, video_id) {
-        return await fetchHelper.get_file(
-            `/backend-api/monitor/video/u/${user_id}/v/${video_id}`,
-        )
-    }
-
-    async getMonitorTime(user_id, video_id) {
+    async getEverySolution() {
         return await fetchHelper.get(
-            `/backend-api/monitor/time/u/${user_id}/v/${video_id}`,
+            `/backend-api/solution`,
         )
     }
 }
@@ -83,7 +65,7 @@ class FetchHelper {
         
         if (json_response.error) {
             console.log(json_response)
-            return;
+            return json_response;
         }
 
         return json_response.data;
@@ -104,27 +86,7 @@ class FetchHelper {
             return;
         }
 
-        return json_response.data;
-    }
-
-    async get_file(url, params) {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            params: params
-        });
-        const blob_response = await response.blob();
-        
-        if (blob_response.error) {
-            console.log(blob_response)
-            return;
-        }
-
-        const videoUrl = URL.createObjectURL(blob_response);
-
-        return videoUrl;
+        return json_response.data
     }
 
     async patch(url, body) {

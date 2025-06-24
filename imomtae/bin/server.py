@@ -2,18 +2,24 @@ from imomtae.http.server import (
     templates, 
     session, 
     cors,
+    lifespan,
+    service_error_handler,
+    Task,
     Router,
     Server,
+    ExceptionHandler,
 )
 from imomtae.http.endpoints.user import (
     post_user,
 )
-from imomtae.http.endpoints.video import (
-    get_video,
+from imomtae.http.endpoints.solution import (
+    get_solution_by_id,
+    get_solution_video_by_id,
+    get_every_solution,
 )
-from imomtae.http.endpoints.monitor import (
-    get_monitor_video,
-    get_monitor_time,
+from imomtae.http.endpoints.collection import (
+    get_collection_by_id,
+    get_collection_video_by_user_id_and_video_id,
 )
 from imomtae.http.endpoints.camera import (
     post_ready,
@@ -53,6 +59,21 @@ server.middleware(
 
 
 # #
+# Task
+
+server.task(
+    task=lifespan(startup=[])
+)
+
+# #
+# exception
+
+server.exception(
+    exception=service_error_handler()
+)
+
+
+# #
 # API: back
 
 # user
@@ -62,16 +83,15 @@ server.router(
 
 # video
 server.router(
-    Router(path="/backend-api/video", methods=["GET"], endpoint=get_video, dependencies=[])
-)
-
-# monitor
-server.router(
-    Router(path="/backend-api/monitor/video/u/{user_id}/v/{video_id}", methods=["GET"], endpoint=get_monitor_video, dependencies=[])
+    Router(path="/backend-api/solution/v/{video_id}", methods=["GET"], endpoint=get_solution_video_by_id, dependencies=[])
 )
 
 server.router(
-    Router(path="/backend-api/monitor/time/u/{user_id}/v/{video_id}", methods=["GET"], endpoint=get_monitor_time, dependencies=[])
+    Router(path="/backend-api/solution", methods=["GET"], endpoint=get_every_solution, dependencies=[])
+)
+
+server.router(
+    Router(path="/backend-api/collection/video/u/{user_id}/v/{video_id}", methods=["GET"], endpoint=get_collection_video_by_user_id_and_video_id, dependencies=[])
 )
 
 # camera
@@ -110,4 +130,9 @@ app = server.app()
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("imomtae.bin.server:app", host="0.0.0.0", port=5000, reload=True)
+    uvicorn.run(
+        "imomtae.bin.server:app", 
+        host="0.0.0.0", 
+        port=5000, 
+        reload=True,
+    )

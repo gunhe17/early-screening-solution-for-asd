@@ -9,6 +9,7 @@ class Page {
         this.main = document.querySelector(`main`);
         this.name = this.main.querySelector(`input[id="name"]`);
         this.birth = this.main.querySelector(`input[id="birth"]`);
+        this.isExisting = this.main.querySelector(`span[id="is-existing"]`);
     }
 
     // common
@@ -21,6 +22,11 @@ class Page {
         const birth = this.birth.value;
 
         const user = await fetcher.user(name, birth);
+
+        if (user.error) {
+            this.isExisting.hidden = false;
+            return;
+        }
         
         window.location.href = `/capture/u/${user.id}/v/1`;
     }

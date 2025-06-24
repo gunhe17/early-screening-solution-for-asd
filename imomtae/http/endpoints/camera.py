@@ -7,8 +7,10 @@ from imomtae.usecase.record_camera import record
 
 """Command"""
 
-async def post_ready():
+class PostReadyInput(BaseModel):
+    pass
 
+async def post_ready():
     is_ready = ready()
 
     return JSONResponse(content={
@@ -21,7 +23,10 @@ class PostRecordInput(BaseModel):
     user_id: str
 
 async def post_record(input: PostRecordInput):
-    is_record = record(input.video_id, input.user_id)
+    is_record = record(
+        video_id=input.video_id, 
+        user_id=input.user_id,
+    )
 
     return JSONResponse(content={
         "data": is_record

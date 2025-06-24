@@ -7,3 +7,4 @@ itsdangerous
 pytest
 python-dotenv
 pydantic
+aiofiles

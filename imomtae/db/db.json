@@ -1,17 +1,36 @@
-[
-  {
-    "id": "dd65b38b-0f86-468c-b33f-7304cb6139ff",
-    "name": "test",
-    "birth": "939281"
-  },
-  {
-    "id": "747f244b-ca1a-451c-9b1c-cb919444619c",
-    "name": "이름",
-    "birth": "010101"
-  },
-  {
-    "id": "94430183-d5be-4121-89bb-ae1a01f9f90d",
-    "name": "2호 근린공원",
-    "birth": "043039"
-  }
-]
+{
+  "solutions": [
+    {
+      "id": 1,
+      "path": "data\\solution_videos\\step1.mp4",
+      "duration": 16.966666666666665
+    },
+    {
+      "id": 2,
+      "path": "data\\solution_videos\\step2.mp4",
+      "duration": 52.6
+    },
+    {
+      "id": 3,
+      "path": "data\\solution_videos\\step3.mp4",
+      "duration": 25.175150000000002
+    },
+    {
+      "id": 4,
+      "path": "data\\solution_videos\\step4.mp4",
+      "duration": 21.054366666666667
+    }
+  ],
+  "users": [
+    {
+      "id": "254eee8a-21d3-4b26-a809-78fa8757fbbc",
+      "name": "\uc774\uc0c1\ud55c\uc0ac\ub78c",
+      "birth": "010101"
+    },
+    {
+      "id": "ebe40f63-7327-4869-bf63-e382f7ab2acd",
+      "name": "\uc774\uc0c1\ud55c\uc0ac\ub78c\uc774\uc57c",
+      "birth": "041017"
+    }
+  ]
+}
