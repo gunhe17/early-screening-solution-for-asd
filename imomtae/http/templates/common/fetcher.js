@@ -28,6 +28,15 @@ class Fetcher {
         )
     }
 
+    stop(user_id) {
+        return fetchHelper.postAndForget(
+            `/backend-api/camera/stop`,
+            {
+                user_id: user_id
+            }
+        )
+    }
+
     async getEverySolution() {
         return await fetchHelper.get(
             `/backend-api/solution`,

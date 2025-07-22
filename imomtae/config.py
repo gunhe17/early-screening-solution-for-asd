@@ -16,7 +16,7 @@ class SystemConfig():
     
     @property
     def EXE_CAPTURE(self):
-        return os.getenv("EXE_CAPTURE", "imomtae/bin/capture.exe")
+        return os.getenv("EXE_CAPTURE", "imomtae/usecase/bin/syncorder.exe")
     
 
 class DBConfig():

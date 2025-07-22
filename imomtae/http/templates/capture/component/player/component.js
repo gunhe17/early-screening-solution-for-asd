@@ -76,7 +76,7 @@ class Player{
             });
 
             // current_id_max
-            this.current_id_max += 1;
+            this.current_id_max = s.id;
         }
     }
 
@@ -107,13 +107,14 @@ class Player{
     }
 
     next() {
-        if (this.current_id >= this.current_id_max) {
+        this.current_id += 1;
+
+        if (this.current_id > this.current_id_max) {
             overlay.cleanup();
             return;
         }
 
         this.current_player.hidden = true;
-        this.current_id += 1;
 
         this.current();
 

@@ -19,11 +19,12 @@ class Overlay {
 
     pause() {
         this.title.textContent = "수집을 중단하셨습니다.";
-        this.description.textContent = "정확한 수집을 위해 처음부터 다시 수집을 진행합니다.";
+        this.description.textContent = "정확한 수집을 위해 처음부터 다시 수집을 진행합니다. 잠시 기다려 주세요.";
         this._fade_in();
     }
 
     cleanup() {
+        console.log("cleanup");
         this.title.textContent = "촬영이 완료되었습니다.";
         this.description.textContent = "촬영된 데이터를 저장하는 중 입니다.";
         this._fade_in();        

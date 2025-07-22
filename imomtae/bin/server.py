@@ -24,11 +24,16 @@ from imomtae.http.endpoints.collection import (
 from imomtae.http.endpoints.camera import (
     post_ready,
     post_record,
+    post_stop,
 )
 from imomtae.http.endpoints.view import (
     home_page,
     capture_page,
     monitor_page,
+    test_page,
+    # test
+    tobii_start_recording, 
+    tobii_stop_recording,
 )
 
 
@@ -103,6 +108,10 @@ server.router(
     Router(path="/backend-api/camera/record", methods=["POST"], endpoint=post_record, dependencies=[])
 )
 
+server.router(
+    Router(path="/backend-api/camera/stop", methods=["POST"], endpoint=post_stop, dependencies=[])
+)
+
 
 # #
 # API: front
@@ -120,6 +129,18 @@ server.router(
 # monitor
 server.router(
     Router(path="/monitor/u/{user_id}", methods=["GET"], endpoint=monitor_page, dependencies=[])
+)
+
+# test
+server.router(
+    Router(path="/test/{page}", methods=["GET"], endpoint=test_page, dependencies=[])
+)
+
+server.router(
+    Router(path="/test/tobii/start", methods=["GET"], endpoint=tobii_start_recording, dependencies=[])
+)
+server.router(
+    Router(path="/test/tobii/stop", methods=["POST"], endpoint=tobii_stop_recording, dependencies=[])
 )
 
 

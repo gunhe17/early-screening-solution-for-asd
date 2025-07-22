@@ -28,7 +28,7 @@ class Page {
         fetcher.record(video_id, user_id)
 
         // wait 5s
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 10000));
 
         // loading
         loading.hide();
@@ -39,6 +39,9 @@ class Page {
 
     async stop() {
         player.pause()
+
+        const user_id = paramManager.get("user_id");
+        fetcher.stop(user_id);
     }
 }
 

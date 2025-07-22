@@ -2,35 +2,45 @@
   "solutions": [
     {
       "id": 1,
-      "path": "data\\solution_videos\\step1.mp4",
-      "duration": 16.966666666666665
+      "path": "data\\solution_videos\\1. \u1100\u1175\u1112\u1161\u1112\u1161\u11a8\u1111\u1162\u1110\u1165\u11ab_01.mp4",
+      "duration": 26.292933333333334
     },
     {
       "id": 2,
-      "path": "data\\solution_videos\\step2.mp4",
-      "duration": 52.6
+      "path": "data\\solution_videos\\2. \u1109\u1161\u1106\u116e\u11afvs\u1109\u1161\u1105\u1161\u11b7\u110b\u1174 \u1106\u116e\u11ab\u1106\u1162\u11a8\u110c\u1165\u11a8 \u1107\u1161\u11af\u1112\u116a_01.mp4",
+      "duration": 24.057366666666667
     },
     {
       "id": 3,
-      "path": "data\\solution_videos\\step3.mp4",
-      "duration": 25.175150000000002
+      "path": "data\\solution_videos\\3. \u1109\u1161\u1112\u116c\u110c\u1165\u11a8 \u1109\u1161\u11bc\u1112\u1169\u110c\u1161\u11a8\u110b\u116d\u11bc \u1100\u1175\u1107\u1161\u11ab(2\u110b\u1175\u11ab)_01.mp4",
+      "duration": 154.42093333333332
     },
     {
       "id": 4,
-      "path": "data\\solution_videos\\step4.mp4",
-      "duration": 21.054366666666667
+      "path": "data\\solution_videos\\4. \u1109\u1161\u1112\u116c\u110c\u1165\u11a8 \u1109\u1161\u11bc\u1112\u1169\u110c\u1161\u11a8\u110b\u116d\u11bc \u1100\u1175\u1107\u1161\u11ab(3\u110b\u1175\u11ab)_01.mp4",
+      "duration": 60.5605
+    },
+    {
+      "id": 5,
+      "path": "data\\solution_videos\\5. \u110f\u1162\u1105\u1175\u11a8\u1110\u1165vs\u110b\u1175\u11ab\u1100\u1161\u11ab \u1109\u1165\u11ab\u1112\u1169 \u1107\u1175\u1100\u116d_01.mp4",
+      "duration": 39.906533333333336
+    },
+    {
+      "id": 6,
+      "path": "data\\solution_videos\\6. \u1106\u1169\u1103\u1166\u11af \u1112\u1162\u11bc\u1103\u1169\u11bc \u1106\u1169\u1107\u1161\u11bc \u1112\u116a\u11a8\u110b\u1175\u11ab_01.mp4",
+      "duration": 93.52676666666667
     }
   ],
   "users": [
     {
-      "id": "254eee8a-21d3-4b26-a809-78fa8757fbbc",
-      "name": "\uc774\uc0c1\ud55c\uc0ac\ub78c",
-      "birth": "010101"
+      "id": "05d0b67d-61f8-4883-9b5d-461ff7a7c146",
+      "name": "\ub098\ub294\uc57c\uc2e4\ud5d8\uc790",
+      "birth": "192832"
     },
     {
-      "id": "ebe40f63-7327-4869-bf63-e382f7ab2acd",
-      "name": "\uc774\uc0c1\ud55c\uc0ac\ub78c\uc774\uc57c",
-      "birth": "041017"
+      "id": "2c70edbb-f27d-4d11-a6c7-ac07dd5b4f44",
+      "name": "\uc774\uac74\uc2e4\ud5d8\uc790\uc57c",
+      "birth": "392814"
     }
   ]
 }
