@@ -3,6 +3,7 @@ import { paramManager } from "/templates/common/param_manager.js"
 
 import { player } from "/templates/capture/component/player/component.js"
 import { loading } from "/templates/capture/component/loading/component.js"
+import { countdown } from "/templates/capture/component/countdown/component.js"
 
 
 /**
@@ -20,14 +21,14 @@ class Page {
 
     async run() {
         // loading
-        loading.show();
+        // countdown.show(10);
 
         // record camera
         const video_id = paramManager.get("video_id");
         const user_id = paramManager.get("user_id");
         fetcher.record(video_id, user_id)
 
-        // wait 5s
+        // wait 10s
         await new Promise(resolve => setTimeout(resolve, 10000));
 
         // loading

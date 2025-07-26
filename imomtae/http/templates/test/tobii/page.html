@@ -1,0 +1,138 @@
+<!-- extend -->
+{% extends "common/base.html" %}
+
+<!-- content -->
+{% block body %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="/templates/test/tobii/page.js" type="module"></script>
+
+<!-- Fullscreen Container -->
+<div class="fixed inset-0 bg-black overflow-hidden">
+    <!-- Main Gaze Tracking Canvas (Full Screen Background) -->
+    <div class="absolute inset-0 bg-gray-900">
+        <canvas id="gaze-canvas" width="1920" height="1080" class="w-full h-full border-none cursor-crosshair">
+            Your browser does not support the HTML5 canvas element.
+        </canvas>
+    </div>
+
+    <!-- Top Overlay: Recording Control Panel -->
+    <div class="absolute top-0 left-0 right-0 z-10 bg-black bg-opacity-60 backdrop-blur-sm border-b border-gray-600">
+        <div class="flex items-center justify-between px-6 py-3">
+            <!-- Left: Title & Status -->
+            <div class="flex items-center space-x-6">
+                <h1 class="text-xl font-bold text-white">Tobii Eye Tracker</h1>
+                <div class="flex items-center space-x-4 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <span class="text-white" id="status-text">Ready</span>
+                    </div>
+                    <div class="text-green-400">
+                        <span id="gaze-count">0</span> points
+                    </div>
+                    <div class="text-purple-400" id="elapsed-time">0.0s</div>
+                    <div class="text-orange-400">
+                        <span id="current-fps">0</span> FPS
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center: Recording Controls -->
+            <div class="flex items-center space-x-3">
+                <button id="start-btn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                    ▶ Start
+                </button>
+                <button id="stop-btn" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200" disabled>
+                    ⏹ Stop
+                </button>
+            </div>
+
+            <!-- Right: Settings -->
+            <div class="flex items-center space-x-4 text-sm text-white">
+                <div class="flex items-center space-x-2">
+                    <label>Duration:</label>
+                    <input id="duration-input" type="number" value="10" min="1" max="300" 
+                        class="w-16 px-2 py-1 bg-gray-800 border border-gray-600 rounded text-white text-center">
+                    <span>sec</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <label>FPS:</label>
+                    <select id="fps-select" class="px-2 py-1 bg-gray-800 border border-gray-600 rounded text-white">
+                        <option value="15">15</option>
+                        <option value="30" selected>30</option>
+                        <option value="60">60</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <input id="enable-stream" type="checkbox" checked class="text-blue-500">
+                    <label>Stream</label>
+                </div>
+                <!-- 3D/2D Toggle 버튼 -->
+                <button id="view-toggle" class="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded text-xs">2D</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom: 3D Visualization (Mini-map style) -->
+    <div class="absolute bottom-4 left-4 z-10 w-80 h-80">
+        <!-- Header -->
+        <div class="flex justify-between items-center h-8 p-2 bg-gray-800 bg-opacity-80 rounded-t-lg border-b border-gray-600">
+            <h3 class="text-white text-sm font-semibold">3D Visualization</h3>
+            <div class="flex space-x-1">
+                <button id="camera-reset" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs">Reset</button>
+                <!-- Rays 표시/숨김 버튼 (3D에서만 작동) -->
+                <button id="toggle-rays" class="bg-purple-600 hover:bg-purple-700 text-white px-2 py-1 rounded text-xs">Rays</button>
+            </div>
+        </div>
+        
+        <!-- 3D Container -->
+        <div id="three-container" class="w-full h-72 bg-gray-900"></div>
+
+        <!-- Sub Canvas (2D Mini-map) -->
+        <canvas id="sub-gaze-canvas" width="320" height="240" class="w-full h-72 bg-gray-900 hidden cursor-crosshair">
+            Your browser does not support the HTML5 canvas element.
+        </canvas>
+    </div>
+
+    <!-- Bottom Right: System Log (Chat style) -->
+    <div class="absolute bottom-4 right-4 z-10 w-[500px] h-80 bg-opacity-80backdrop-blur-sm">
+        
+        <!-- Log Container -->
+        <div id="log-container" class="h-80 overflow-y-auto p-3 font-mono text-xs text-green-400 space-y-1">
+            <div class="log-entry opacity-80">[00:00:00] System ready...</div>
+            <div class="log-entry opacity-80">[00:00:01] Tobii Eye Tracker initialized</div>
+            <div class="log-entry opacity-80">[00:00:02] Waiting for user input...</div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Custom scrollbar for log */
+#log-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+#log-container::-webkit-scrollbar-track {
+    background: rgba(75, 85, 99, 0.3);
+}
+
+#log-container::-webkit-scrollbar-thumb {
+    background: rgba(34, 197, 94, 0.6);
+    border-radius: 2px;
+}
+
+#log-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 197, 94, 0.8);
+}
+
+/* Pulse animation for recording status */
+.recording-pulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+</style>
+
+{% endblock %}

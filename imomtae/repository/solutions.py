@@ -106,6 +106,7 @@ class SolutionGet:
         solution = [
             s for s in dson.get("solutions", []) if s["id"] == int(id)
         ][0]
+
         getted = (
             Solution.from_dict(solution).to_dict()
         )
@@ -126,6 +127,7 @@ class SolutionGet:
         solutions = (
             dson.get("solutions", [])
         )
+        
         getted = [
             Solution.from_dict(s).to_dict() for s in solutions
         ]

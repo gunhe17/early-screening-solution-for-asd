@@ -1,0 +1,13 @@
+<!-- content -->
+{% macro countdown() %}
+
+<div 
+   id="countdown"
+   class="absolute inset-0 flex items-center justify-center z-50 hidden"
+>
+   <div class="flex items-center justify-center h-12 w-12 border-4 border-gray-300 rounded-full">
+       <span id="number" class="text-white font-bold text-lg"></span>
+   </div>
+</div>
+
+{% endmacro %}

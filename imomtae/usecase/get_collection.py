@@ -6,6 +6,10 @@ from imomtae.repository.collections import CollectionGet
 db_config=DBConfig()
 
 
+"""Command"""
+
+"""Query"""
+
 def get_video_by_user_id(
     user_id: str,
     db=Path(db_config.DB_PATH),

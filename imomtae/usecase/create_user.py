@@ -14,6 +14,9 @@ db_config=DBConfig()
 def create(
     name: str,
     birth: str,
+    center: str,
+    type: str,
+    called: str | None = None,
     db=Path(db_config.DB_PATH),
 ) -> dict:
     
@@ -21,7 +24,10 @@ def create(
         db,
         user=User.from_dict({
             "name": name,
-            "birth": birth
+            "birth": birth,
+            "center": center,
+            "type": type,
+            "called": called
         })
     )
     if created is None:
