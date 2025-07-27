@@ -27,6 +27,9 @@ from imomtae.http.endpoints.camera import (
     post_record,
     post_stop,
 )
+from imomtae.http.endpoints.openai import (
+    post_openai
+)
 from imomtae.http.endpoints.view import (
     home_page,
     capture_page,
@@ -117,6 +120,11 @@ server.router(
     Router(path="/backend-api/camera/stop", methods=["POST"], endpoint=post_stop, dependencies=[])
 )
 
+# openai
+server.router(
+    Router(path="/backend-api/openai", methods=["POST"], endpoint=post_openai, dependencies=[])
+)
+
 
 # #
 # API: front
@@ -159,6 +167,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "imomtae.bin.server:app", 
         host="0.0.0.0", 
-        port=5000, 
+        port=5001, 
         reload=True,
     )
