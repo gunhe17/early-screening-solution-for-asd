@@ -11,6 +11,7 @@ from imomtae.http.server import (
 )
 from imomtae.http.endpoints.user import (
     post_user,
+    get_user_by_id
 )
 from imomtae.http.endpoints.solution import (
     get_solution_by_id,
@@ -84,6 +85,10 @@ server.exception(
 # user
 server.router(
     Router(path="/backend-api/user", methods=["POST"], endpoint=post_user, dependencies=[])
+)
+
+server.router(
+    Router(path="/backend-api/user/{id}", methods=["GET"], endpoint=get_user_by_id, dependencies=[])
 )
 
 # video
