@@ -5,6 +5,8 @@
 class Loading {
     constructor() {
         this.loading = document.querySelector(`#loading`);
+
+        console.log('loading init:', this.loading);
     }
 
     // common

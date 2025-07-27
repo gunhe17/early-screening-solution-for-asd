@@ -43,6 +43,42 @@
             </div>
         </div>
 
+        <!-- Input: center -->
+        <div>
+            <label for="center" class="block text-sm/6 font-medium text-gray-300">Center</label>
+            <div class="flex max-w-md w-full">
+                <span class="inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-e-0 rounded-s-md border-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="size-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m2.25-18v18m13.5-18v18m2.25-18v18M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.75m-3.75 3.75h.75m-3.75 3.75h.75m-3.75 3.75H21m-9-1.5h.75m-.75-3h.75m-.75-3h.75m-.75-3h.75M12 10.5h.75m-.75 3h.75m-.75 3h.75m-.75 3h.75m-.75 3h.75" />
+                    </svg>
+                </span>
+                <input type="text" id="center" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-400 focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-600 p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="센터명을 입력해주세요.">
+            </div>
+        </div>
+
+        <!-- Input: type -->
+        <div>
+            <label for="type" class="block text-sm/6 font-medium text-gray-300">Type</label>
+            <select id="type" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="">선택해주세요</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+        </div>
+
+        <!-- Input: called -->
+        <div>
+            <label for="called" class="block text-sm/6 font-medium text-gray-300">Called</label>
+            <div class="flex max-w-md w-full">
+                <span class="inline-flex items-center px-3 text-sm text-gray-400 bg-gray-600 border border-e-0 rounded-s-md border-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="size-4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.691 1.359 3.06 3.04 3.06h.18c.773 0 1.53.319 2.07.845l2.07 2.07a.75.75 0 0 0 1.06 0l2.07-2.07c.54-.526 1.297-.845 2.07-.845h.18c1.681 0 3.04-1.369 3.04-3.06V4.989c0-1.691-1.359-3.06-3.04-3.06H5.29c-1.681 0-3.04 1.369-3.04 3.06v6.521Z" />
+                    </svg>
+                </span>
+                <input type="text" id="called" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-400 focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-600 p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="호칭을 입력해주세요 (선택사항)">
+            </div>
+        </div>
+
         <!-- Submit Button -->
         <div>
             <button 

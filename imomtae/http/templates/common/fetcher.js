@@ -2,13 +2,22 @@
  * @Fetcher
  */
 class Fetcher {
-    async user(name, birth) {
+    async createUser(name, birth, center, type, called) {
         return await fetchHelper.post(
             `/backend-api/user`,
             {
                 name: name,
-                birth: birth
+                birth: birth,
+                center: center,
+                type: type,
+                called: called
             }
+        )
+    }
+
+    async getUser(id) {
+        return await fetchHelper.get(
+            `/backend-api/user/${id}`
         )
     }
 
@@ -33,6 +42,15 @@ class Fetcher {
             `/backend-api/camera/stop`,
             {
                 user_id: user_id
+            }
+        )
+    }
+
+    async openai(text) {
+        return await fetchHelper.postStream(
+            `/backend-api/openai`,
+            {
+                text: text
             }
         )
     }
@@ -78,6 +96,22 @@ class FetchHelper {
         }
 
         return json_response.data;
+    }
+
+    async postStream(url, body) {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(body)
+        });
+
+        if (!response.ok) {
+            console.log(await response.json());
+            return;
+        }
+
+        const blob_response = await response.blob();
+        return blob_response;
     }
 
     async get(url, params) {

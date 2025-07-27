@@ -3,6 +3,7 @@ import { video } from "/templates/common/video.js"
 import { paramManager } from "/templates/common/param_manager.js"
 
 import { overlay } from "/templates/capture/component/player/component/overlay/component.js"
+import { attention } from "/templates/capture/component/player/component/attention/component.js"
 
 
 /**
@@ -71,8 +72,8 @@ class Player{
                 continue;
             }
             
-            player.addEventListener('ended', () => {
-                this.next();
+            player.addEventListener('ended', async () => {
+                await this.next();
             });
 
             // current_id_max
@@ -106,7 +107,7 @@ class Player{
         this.current_player.hidden = false;
     }
 
-    next() {
+    async next() {
         this.current_id += 1;
 
         if (this.current_id > this.current_id_max) {
@@ -117,6 +118,10 @@ class Player{
         this.current_player.hidden = true;
 
         this.current();
+
+        if (attention.is_run(this.current_id)) {
+            await attention.run();
+        }
 
         this.play();
     }

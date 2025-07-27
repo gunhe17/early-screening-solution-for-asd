@@ -2,8 +2,9 @@
 {% extends "common/base.html" %}
 
 <!-- import -->
-{% from "capture/component/player/component.html" import player %}
+ {% from "capture/component/countdown/component.html" import countdown %}
 {% from "capture/component/loading/component.html" import loading %}
+{% from "capture/component/player/component.html" import player %}
 
 <!-- content -->
 {% block body %}
@@ -12,8 +13,9 @@
 
 <main class="flex w-full h-full">
 
-    {{ player() }}
+    {{ countdown() }}
     {{ loading() }}
+    {{ player() }}
 
 </main>
 
