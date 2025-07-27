@@ -31,8 +31,20 @@ class DBConfig():
     @property
     def COLLECTION_PATH(self):
         return os.getenv("COLLECTION_PATH",  "data/collection_videos")
-    
 
+class OpenAIConfig():
+    @property
+    def OPENAI_KEY(self):
+        return os.getenv("OPENAI_KEY", "")
+    
+    @property
+    def OPENAI_ORGANIZATION(self):
+        return os.getenv("OPENAI_ORGANIZATION", "")
+    
+    @property
+    def OPENAI_PROJECT(self):
+        return os.getenv("OPENAI_PROJECT", "")
+    
 class CameraConfig():
     @property
     def CAM_COUNT(self):
