@@ -1,8 +1,3 @@
-$env:PYTHONPATH = "."
-
-set PYTHONPATH=C:\Users\user\Workspace\early-screening-solution-for-asd
-
-python imomtae/bin/server.py
-
-# setup
-python imomtae/usecase/create_solution.py
+export PYTHONPATH=.
+python3 imomtae/usecase/create_solution.py
+python3 imomtae/bin/server.py
