@@ -50,11 +50,10 @@ class Player{
         );
 
         for (const s of solutions) {
-            // url
-            const url = `/backend-api/solution/v/${s.id}`;
 
-            await video.store(url);
-            const blob = await video.getObjectURL(url);
+            const res = await fetcher.getSolution(s.id);
+            
+            const blob = URL.createObjectURL(res);
 
             this.component.insertAdjacentHTML("beforeend", `
                 <video
@@ -64,7 +63,7 @@ class Player{
                     hidden
                 ></video>
             `);
-            
+
             // player
             const player = this.component.querySelector(`video[name=video-player-${s.id}]`);
             if (!await this._is_ready_to_play(player)) {

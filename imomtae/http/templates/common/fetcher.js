@@ -21,12 +21,6 @@ class Fetcher {
         )
     }
 
-    async ready() {
-        return await fetchHelper.post(
-            `/backend-api/camera/ready`
-        )
-    }
-
     record(video_id, user_id) {
         return fetchHelper.postAndForget(
             `/backend-api/camera/record`,
@@ -47,7 +41,7 @@ class Fetcher {
     }
 
     async openai(text) {
-        return await fetchHelper.postStream(
+        return await fetchHelper.postBlob(
             `/backend-api/openai`,
             {
                 text: text
@@ -58,6 +52,12 @@ class Fetcher {
     async getEverySolution() {
         return await fetchHelper.get(
             `/backend-api/solution`,
+        )
+    }
+
+    async getSolution(id) {
+        return await fetchHelper.getBlob(
+            `/backend-api/solution/v/${id}`,
         )
     }
 }
@@ -98,7 +98,7 @@ class FetchHelper {
         return json_response.data;
     }
 
-    async postStream(url, body) {
+    async postBlob(url, body) {
         const response = await fetch(url, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -130,6 +130,23 @@ class FetchHelper {
         }
 
         return json_response.data
+    }
+
+    async getBlob(url) {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        if (!response.ok) {
+            console.log(await response.json());
+            return;
+        }
+
+        const blob_response = await response.blob();
+        return blob_response;
     }
 
     async patch(url, body) {
