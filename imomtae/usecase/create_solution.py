@@ -1,3 +1,4 @@
+import re
 import cv2
 from pathlib import Path
 
@@ -10,6 +11,11 @@ from imomtae.repository.solutions import (
 db_config=DBConfig()
 
 
+def natural_sort_key(path):
+    """자연 정렬을 위한 키 함수"""
+    return [int(text) if text.isdigit() else text.lower() 
+            for text in re.split(r'(\d+)', str(path))]
+
 def create(
     db=Path(db_config.DB_PATH)
 ) -> list[dict]:
@@ -17,15 +23,21 @@ def create(
     video_index = 0
     solutions = []
 
-    for v in Path(db_config.SOLUTION_PATH).rglob("*.mp4"):
+    # 자연 정렬 적용
+    video_files = sorted(
+        Path(db_config.SOLUTION_PATH).rglob("*.mp4"),
+        key=natural_sort_key
+    )
+    
+    for v in video_files:
         video_index += 1
         video_path = str(v)
         video_duration = _duration(str(video_path))
         solutions.append(
             Solution.from_dict({
-                "id":video_index,
-                "path":video_path,
-                "duration":video_duration,
+                "id": video_index,
+                "path": video_path,
+                "duration": video_duration,
             })
         )
     
