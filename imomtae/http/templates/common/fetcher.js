@@ -60,6 +60,19 @@ class Fetcher {
             `/backend-api/solution/v/${id}`,
         )
     }
+
+    csv(user_id, time, type, video_id) {
+        return fetchHelper.postAndForget(
+            `/backend-api/csv`,
+            {
+                user_id: user_id,
+                time: time,
+                type: type,
+                video_id: video_id
+            }
+        )
+
+    }
 }
 
 /**

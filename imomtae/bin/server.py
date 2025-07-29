@@ -30,6 +30,9 @@ from imomtae.http.endpoints.camera import (
 from imomtae.http.endpoints.openai import (
     post_openai
 )
+from imomtae.http.endpoints.csv import (
+    post_csv
+)
 from imomtae.http.endpoints.view import (
     home_page,
     capture_page,
@@ -123,6 +126,11 @@ server.router(
 # openai
 server.router(
     Router(path="/backend-api/openai", methods=["POST"], endpoint=post_openai, dependencies=[])
+)
+
+# csv
+server.router(
+    Router(path="/backend-api/csv", methods=["POST"], endpoint=post_csv, dependencies=[])
 )
 
 

@@ -9,6 +9,7 @@ import { attention } from "/templates/capture/component/player/component/attenti
 /**
  * @Component
  */
+
 class Player{
     constructor() {
         this.component = document.querySelector(`#player`);
@@ -84,10 +85,24 @@ class Player{
     // unique
 
     play() {
+        fetcher.csv(
+            paramManager.get("user_id"),
+            new Date(Date.now()).toISOString(),
+            "play",
+            this.current_id.toString()
+        );
+
         this.current_player.play();
     }
 
     pause() {
+        fetcher.csv(
+            paramManager.get("user_id"),
+            new Date(Date.now()).toISOString(),
+            "pause",
+            this.current_id.toString()
+        );
+
         this.current_player.pause();
         overlay.pause();
 
