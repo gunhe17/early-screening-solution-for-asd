@@ -22,13 +22,13 @@ class Attention {
         const user = await this._user();
         const user_called = user.called;
         
-        // audio
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        
         const audio = await this._audio(user_called, index);
         audio.play();
         audio.onended = () => URL.revokeObjectURL(audio.audioUrl);
 
-        // wait
-        await new Promise(resolve => setTimeout(resolve, 10000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         this._hide();
         
@@ -48,7 +48,7 @@ class Attention {
         return user
     }
 
-    async _audio(name) {
+    async _audio(name, index) {
         let message;
 
         if (index === 2) {
