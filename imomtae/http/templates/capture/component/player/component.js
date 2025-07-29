@@ -119,7 +119,7 @@ class Player{
         this.current();
 
         if (attention.is_run(this.current_id)) {
-            await attention.run();
+            await attention.run(this.current_id);
         }
 
         this.play();

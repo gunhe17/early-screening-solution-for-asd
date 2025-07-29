@@ -6,7 +6,7 @@ import { paramManager } from "/templates/common/param_manager.js"
  */
 class Attention {
     constructor() {
-        this.indexes = [2]; // 입력한 index의 해당하는 동영상의 재생 전에 발생함.
+        this.indexes = [2, 9]; // 입력한 index의 해당하는 동영상의 재생 전에 발생함.
 
         this.attention = document.querySelector(`#attention`);
     }
@@ -15,7 +15,7 @@ class Attention {
     async init() {
     }
 
-    async run() {
+    async run(index) {
         this._show();
 
         // user
@@ -23,7 +23,7 @@ class Attention {
         const user_called = user.called;
         
         // audio
-        const audio = await this._audio(user_called);
+        const audio = await this._audio(user_called, index);
         audio.play();
         audio.onended = () => URL.revokeObjectURL(audio.audioUrl);
 
@@ -49,7 +49,15 @@ class Attention {
     }
 
     async _audio(name) {
-        const audioBlob = await fetcher.openai(`${name}, 여기 볼래? 여기야! 여기~`);
+        let message;
+
+        if (index === 2) {
+            message = name + "~! 친구들이 뭐하는지 볼래?";
+        } else if (index === 9) {
+            message = name + "~! 나 따라서 신나게 춤춰볼까? 잘 할 수 있지~?";
+        }
+
+        const audioBlob = await fetcher.openai(message);
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);
         
