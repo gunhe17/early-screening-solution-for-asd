@@ -1,6 +1,8 @@
 from pathlib import Path
 import subprocess
+import signal
 import re
+import os
 
 from imomtae.config import (
     DBConfig,
@@ -38,26 +40,37 @@ class ProcessManager:
             return False
             
         try:
-            print(f"[Stop] Terminating process {user_id}...")
-            
-            process.terminate()
+            print(f"[Stop] Sending SIGINT to process {user_id}...")
+
+            # FastAPI 보호 시작
+            original_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
             
             try:
-                process.wait(timeout=15)
-                print(f"[Stop] Process {user_id} terminated gracefully")
-            except subprocess.TimeoutExpired:
-                print(f"[Stop] Process {user_id} force killing...")
-                process.kill()
-                process.wait()
-                print(f"[Stop] Process {user_id} killed")
+                os.kill(process.pid, signal.CTRL_C_EVENT)
+
+                # 프로세스 종료 대기 (보호 상태 유지)
+                try:
+                    process.wait(timeout=10)
+                    print(f"[Stop] Process {user_id} terminated gracefully")
+                except subprocess.TimeoutExpired:
+                    print(f"[Stop] Process {user_id} force killing...")
+                    process.kill()
+                    process.wait()
+                    print(f"[Stop] Process {user_id} killed")
             
+            finally:
+                # 반드시 복원 (예외 발생해도)
+                signal.signal(signal.SIGINT, original_handler)
+                print(f"[Stop] FastAPI protection restored")
+
             cls.remove_process(user_id)
             return True
-            
+
         except Exception as e:
             print(f"[Stop] Error: {e}")
             cls.remove_process(user_id)
             return False
+        
         
 process_manager = ProcessManager()
 
@@ -81,7 +94,7 @@ def record(
         _record_duration(video_id=video_id) 
     )
 
-    output_dir = _output_dir(
+    output_path = _output_path(
         user_id
     )
 
@@ -89,7 +102,8 @@ def record(
         [
             system_config.EXE_CAPTURE,
             "--record_duration",    f"{record_duration}",
-            "--output_directory",   f"{output_dir}",
+            "--output_path",   f"{output_path}",
+            # "--calibration_path",   f"{output_path}",
         ],
         stdin=subprocess.PIPE,
         # stdout=subprocess.PIPE,
@@ -126,7 +140,7 @@ def _record_duration(video_id):
     
     return sum(durations)
 
-def _output_dir(user_id: str):
+def _output_path(user_id: str):
     base = f"{db_config.COLLECTION_PATH}/{user_id}"
 
     dir = Path(base)

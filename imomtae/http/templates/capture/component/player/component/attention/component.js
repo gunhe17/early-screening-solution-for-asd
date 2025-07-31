@@ -21,14 +21,19 @@ class Attention {
         // user
         const user = await this._user();
         const user_called = user.called;
-        
-        await new Promise(resolve => setTimeout(resolve, 5000));
+
+
+        if (index === 2) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+        } else if (index === 9) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
         
         const audio = await this._audio(user_called, index);
         audio.play();
         audio.onended = () => URL.revokeObjectURL(audio.audioUrl);
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
 
         this._hide();
         
